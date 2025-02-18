@@ -1,4 +1,5 @@
 ## This project was done for IT5007 in AY2023/2024 Sem 2
+### Data files and env files have been removed in this clean version of the repo
 ## Background, Motivation and Primary User Story
 
 Following property prices and property launches is a national obsession in Singapore.  
