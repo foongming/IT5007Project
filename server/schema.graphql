@@ -1,0 +1,126 @@
+scalar GraphQLDate
+
+type averagePrice {
+  _id: GraphQLDate!
+  Psf: Float!
+}
+
+type cleanedResale {
+  _id: ID!
+  month: Int!
+  town: String!
+  flat_type: String!
+  street_name: String!
+  storey_range: String!
+  floor_area_sqm: Float!
+  flat_model: String!
+  lease_commence_date: Int!
+  remaining_lease: Float!
+  resale_price: Float!
+  year: Int!
+  date: GraphQLDate!
+  lat: Float!
+  lng: Float!
+  address: String!
+  postal: Int!
+  Psf: Int!
+  Sqft: Int! 
+}
+
+type listings {
+    _id: ID!
+    Address: String!
+    HDBType: String!
+    Bathrooms: Int!
+    UtilityRooms: Int!
+    Sqft: String!
+    Psf: String!
+    Price: Int!
+    Postal: Int!
+    Lat: Float!
+    Lon: Float!
+    URL: String!
+    town: String # todo
+    flat_type: String # todo
+}
+
+input intFilterInput{
+  gte: Int
+  lte: Int
+  gt: Int
+  lt: Int
+}
+
+input rangeFilterInput{
+  gte: Float
+  lte: Float
+  gt: Float
+  lt: Float
+}
+
+input optionalArgsRecord {
+  _id: ID
+  month: Int
+  town:String
+  flat_type: String
+  block: String
+  street_name: String
+  storey_range: String
+  floor_area_sqm: Float
+  flat_model: String
+  lease_commence_date: Int
+  remaining_lease: Float
+  resale_price: Float
+  year: Int
+  date: String
+  lat: Float
+  lng: Float
+  searchval: String
+  building: String
+  address: String
+  postal: Int
+  yearRange: intFilterInput
+  monthRange: intFilterInput
+  dateRange: rangeFilterInput
+  limit: Int
+  latRange: rangeFilterInput
+  lonRange: rangeFilterInput
+  sqfRange: rangeFilterInput
+  psfRange: rangeFilterInput
+  towns: [String]
+  flatTypes: [String]
+}
+
+input optionalArgsListing {
+  _id: ID
+  Address: String
+  HDBType: String
+  Bathrooms: Int
+  UtilityRooms: Int
+  Sqft: String
+  Psf: String
+  Price: Int
+  Postal: Int
+  Lat: Float
+  Lon: Float
+  URL: String
+  limit: Int
+  towns: [String]
+  flatTypes: [String]
+  latRange: rangeFilterInput
+  lonRange: rangeFilterInput
+  sqfRange: rangeFilterInput
+  psfRange: rangeFilterInput
+}
+
+
+type Query {
+  getRecord(id:ID!): cleanedResale
+  getRecords(args: optionalArgsRecord): [cleanedResale]
+  getRecordsAveragePrice(args: optionalArgsRecord): [averagePrice]
+  getListing(id:ID!) : listings
+  getListings(args: optionalArgsListing): [listings]
+  getLatestPostals: [cleanedResale]
+  getDistinctTowns: [String]
+  getDistinctFlatTypes: [String]
+}
